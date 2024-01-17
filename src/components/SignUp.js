@@ -38,7 +38,7 @@ const SignUp = () => {
   return (
     <div className="p-6 text-white flex justify-center items-center min-h-screen">
       <div className="flex justify-center items-center h-full">
-        <div className="w-[450px] bg-[#152039] p-6 rounded shadow">
+        <div className="w-[450px] bg-transparent p-6 rounded shadow">
           <h1 className="text-2xl font-bold mb-6 text-center">Sign Up for Web Quest</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">

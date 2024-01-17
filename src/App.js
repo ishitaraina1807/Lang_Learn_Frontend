@@ -6,6 +6,8 @@ import SignUp from './components/SignUp';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import LangSelectPage from './components/LangSelectPage'
+import Profile from './components/Profile';
+
 
 function App() {
   return (
@@ -15,7 +17,7 @@ function App() {
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/language-selection" element={<LangSelectPage/>} />
-
+            <Route path="/profile" element={<Profile/>} />
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<SignUp/>} />
           </Routes>
