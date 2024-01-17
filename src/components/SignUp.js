@@ -86,7 +86,7 @@ const SignUp = () => {
               &nbsp;&nbsp;
               <span
                 className="text-white font-bold cursor-pointer hover:underline"
-                onClick={() => navigate("/login")}
+                onClick={() => navigate("/")}
               >
                 Login
               </span>
