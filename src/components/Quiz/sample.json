@@ -1,0 +1,32 @@
+ [
+        {
+            "question": "Which of the following is a correct sentence?",
+            "options": [
+                "He don't like ice cream.",
+                "She doesn't likes ice cream.",
+                "They doesn't like ice cream.",
+                "I don't like ice cream."
+            ],
+            "correctAnswer": "I don't like ice cream."
+        },
+        {
+            "question": "Choose the correct form of the verb: She ________ to the party last night.",
+            "options": [
+                "go",
+                "goes",
+                "went",
+                "gone"
+            ],
+            "correctAnswer": "went"
+        },
+        {
+            "question": "Which sentence is grammatically incorrect?",
+            "options": [
+                "I have been to Paris.",
+                "He have a new car.",
+                "She is studying for her exams.",
+                "They are going to the beach."
+            ],
+            "correctAnswer": "He have a new car."
+        }
+    ]

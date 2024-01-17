@@ -12,14 +12,14 @@ export default class LangSelectPage extends Component {
           <h1 className="text-3xl font-bold tracking-tight text-[#152039] sm:text-3xl text-center">Select Your Category of Choice</h1>
           <div className="mt-10 flex items-center justify-left gap-x-6">
           <Link
-                    to="/english-quiz"
+                    to="/learn-english"
                     className="rounded-md shadow-lg bg-[#CFD724] transform hover:scale-110 transition duration-300 px-3.5 py-3.5 text-lg font-semibold text-white shadow-sm hover:bg-custom-magenta focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
                   >
                     <img src={uk} alt="uk-flag" />
                     English
                   </Link>
                   <Link
-                    to="/spainsih-quiz"
+                    to="/learn-spanish"
                     className="rounded-md shadow-lg bg-[#CFD724] transform hover:scale-110 transition duration-300 px-3.5 py-3.5 text-lg font-semibold text-white shadow-sm hover:bg-custom-purple focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
                   >
                     <img src={spain} alt="spain-flag" />
