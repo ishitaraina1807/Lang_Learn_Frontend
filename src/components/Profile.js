@@ -1,8 +1,35 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Profile() {
+    const [highestScore, setHighestScore] = useState(0);
+    const name = localStorage.getItem('name');
 
+    useEffect(() => {
+        // Fetch highest score from the backend API
+        const fetchHighestScore = async () => {
+            try {
+                const response = await fetch('http://localhost:4000/api/highestScore/save-highest-score', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    // You can add other necessary headers or parameters
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                setHighestScore(result.highestScore);
+            } catch (error) {
+                console.error('Error fetching highest score:', error.message);
+            }
+        };
+
+        fetchHighestScore();
+    }, []);
     return (
         <div>
             <div className="p-16"><div className="p-8 bg-white shadow mt-5">
@@ -20,12 +47,12 @@ export default function Profile() {
                     </div>
                 </div>
                 <div className="mt-20 text-center border-b pb-12">
-                    <h1 className="text-4xl font-medium text-gray-700">Ishita Raina</h1>   
+                    <h1 className="text-4xl font-medium text-gray-700">{name}</h1>   
                     <h2 className="text-2xl mt-8 font-medium text-gray-700">Leadership Board</h2> 
                     <p className="mt-2 text-gray-500">English: <span>Level 2</span></p>
                     <p className="mt-2 text-gray-500">Spanish: <span>Level 1</span></p>
                 </div>  <div className="mt-8 flex flex-col justify-center">
-                <h2 className="text-2xl font-medium text-gray-700 text-center">Current Score: <span>230</span></h2>
+                <h2 className="text-2xl font-medium text-gray-700 text-center">Current Score: <span>{highestScore}</span></h2>
                     <button className="text-indigo-500 py-2 px-4  font-medium mt-4"> Reset Progress</button>
                 </div>
             </div>

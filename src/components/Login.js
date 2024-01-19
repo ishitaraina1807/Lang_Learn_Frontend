@@ -16,22 +16,24 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Login form submitted');
-
+    
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('http://localhost:4000/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email: credentials.email, password: credentials.password }),
       });
+  
       if (!response.ok) {
         // Check if response status is not okay, then throw an error
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
+  
       const json = await response.json();
       console.log(json);
-
+  
       if (json.success) {
         // Save the auth token and redirect
         localStorage.setItem('token', json.authToken);
@@ -42,7 +44,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error('Error during login:', error.message);
-      alert('Invalid Credentials. Please try again.');
+      alert('Invalid credentials.');
     }
   };
 
@@ -63,20 +65,20 @@ const Login = () => {
                 className="w-full bg-white text-custom-black rounded px-3 py-2 focus:outline-0"
                 value={credentials.email}
                 onChange={handleEmailChange}
-                aria-describedby='emailHelp'
-              />
+            aria-describedby='emailHelp'
+          />
             </div>
             <div className="mb-4">
               <label htmlFor="password" className="block text-white font-bold mb-2">
                 Password
               </label>
               <input
-                type='password'
-                value={credentials.password}
-                className="w-full bg-white text-custom-black rounded px-3 py-2 focus:outline-0"
-                onChange={handlePasswordChange}
-                id='password'
-              />
+            type='password'
+            value={credentials.password}
+            className="w-full bg-white text-custom-black rounded px-3 py-2 focus:outline-0"
+            onChange={handlePasswordChange}
+            id='password'
+          />
             </div>
             <div className="flex justify-center items-center text-xs my-2">
               <span className="text-gray-400">Don't have an account?</span>&nbsp;&nbsp;
@@ -87,7 +89,7 @@ const Login = () => {
                 Sign Up
               </span>
             </div>
-
+          
 
             <button
               type="submit"

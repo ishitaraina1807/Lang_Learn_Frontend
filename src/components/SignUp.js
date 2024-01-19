@@ -2,45 +2,51 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-    const [credentials, setCredentials] = useState({ name: "", email: "", password: "", confirmPassword: "" });
-    const navigate = useNavigate();
+  const [credentials, setCredentials] = useState({ name: "", email: "", password: "", confirmPassword: "" });
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      console.log('User form submitted');
-  
-      try {
-        const response = await fetch('http://localhost:5000/api/auth/createuser', {            
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: credentials.email, password: credentials.password }),
-        });
-        if (!response.ok) {
-          // Check if response status is not okay, then throw an error
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const json = await response.json();
-        console.log(json);
-  
-        if (json.success) {
-          // Save the auth token and redirect
-          localStorage.setItem('token', json.authToken);
-          navigate('/home');
-          console.log('Successfully created user');
-        } else {
-          alert('User Already exists. Please login.');
-        }
-      } catch (error) {
-        console.error('Error during curing creating user:', error.message);
-        alert('User Already exists. Please login.');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Signup form submitted');
+
+    const { name, email, password } = credentials;
+
+    try {
+      const response = await fetch('http://localhost:4000/api/auth/createuser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      if (!response.ok) {
+        // Check if response status is not okay, then throw an error
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    };
 
-    const onChange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    };
+      const json = await response.json();
+      console.log(json);
+
+      if (json.success) {
+        // Save the auth token and user information
+        localStorage.setItem('token', json.authToken);
+        localStorage.setItem('name', name); // Save the user's name
+        navigate('/home');
+        console.log('Successfully created a user');
+      } else {
+        alert('User already exists. Please login.');
+      }
+    } catch (error) {
+      console.error('Error during signup:', error.message);
+      alert('User already exists. Please login.');
+    }
+  };
+
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
 
   return (
     <div className="p-6 text-white flex justify-center items-center min-h-screen">
