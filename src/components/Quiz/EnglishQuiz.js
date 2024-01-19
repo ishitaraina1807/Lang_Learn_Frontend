@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function EnglishQuiz() {
   const [questionId, setQuestionId] = useState(1);
@@ -71,7 +72,7 @@ function EnglishQuiz() {
     const timeTaken = (endTime - startTime) / 1000;
 
     return (
-      <div className='bg-[#F5F5F5] p-14 rounded-xl shadow-lg'>
+      <div className='mt-6 bg-[#F5F5F5] p-14 rounded-xl shadow-lg'>
         <h2 className='text-[#152039] text-lg text-center font-bold mb-4'>Quiz Result</h2>
         <hr />
         <div className='flex flex-col mt-4 gap-4 text-center text-2xl'>
@@ -83,14 +84,7 @@ function EnglishQuiz() {
           >
             Restart Quiz
           </button>
-          <div className="flex items-center justify-center hover:scale-110 text-[#152039] mx-auto hover:text-[#CFD724] transition duration-300 hover:cursor-pointer">
-            <div className="w-10 h-10">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <p>View your Profile</p>
-          </div>
+         
         </div>
       </div>
     );
@@ -173,14 +167,14 @@ function EnglishQuiz() {
               </button>
             </div>
           )}
-          <div className="mt-6 flex items-center justify-center hover:scale-110 text-[#152039] mx-auto hover:text-[#CFD724] transition duration-300 hover:cursor-pointer">
+         <Link to="/profile" className="flex items-center justify-center hover:scale-110 text-[#152039] mx-auto hover:text-[#CFD724] transition duration-300 hover:cursor-pointer">
             <div
               className="w-10 h-10"
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
             </div>
             <p>View your Profile</p>
-          </div>
+          </Link>
         </div>
       ) : (
         <p>Loading...</p>
