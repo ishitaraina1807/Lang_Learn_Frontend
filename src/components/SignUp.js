@@ -6,29 +6,36 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log('Signup form submitted');
-        const { name, email, password } = credentials;
-
-        const response = await fetch('http://localhost:5000/api/auth/createuser', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email, password }),
+      e.preventDefault();
+      console.log('User form submitted');
+  
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/createuser', {            
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: credentials.email, password: credentials.password }),
         });
-
+        if (!response.ok) {
+          // Check if response status is not okay, then throw an error
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const json = await response.json();
         console.log(json);
-
+  
         if (json.success) {
-            // Save the auth token and redirect
-            localStorage.setItem('token', json.authToken);
-            navigate('/');
-            console.log('Successfully created a user');
+          // Save the auth token and redirect
+          localStorage.setItem('token', json.authToken);
+          navigate('/home');
+          console.log('Successfully created user');
         } else {
-            alert('User already exists');
+          alert('User Already exists. Please login.');
         }
+      } catch (error) {
+        console.error('Error during curing creating user:', error.message);
+        alert('User Already exists. Please login.');
+      }
     };
 
     const onChange = (e) => {
